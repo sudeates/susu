@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+	int zar1,zar2,puan,toplam,i=0;
+	srand(time(NULL));
+	zar1=1+(rand()%6);
+	zar2=1+(rand()%6);
+	printf("1. zar=%d 2. zar=%d\n",zar1,zar2);
+	toplam=zar1+zar2;
+	printf("zarlarin toplami=%d\n",toplam);
+	switch(toplam) 
+	{
+       
+        case 7:
+       
+            printf("Tebrikler. Oyunu kazandiniz...\n");
+            break;
+           
+           
+        case 11:
+           
+            printf("Tebrikler. Oyunu kazandiniz...\n");
+            break;
+           
+           
+        case 2:
+           
+            printf("Oyunu kaybettiniz...\n");
+            break;
+           
+        case 3:
+           
+            printf("Oyunu kaybettiniz...\n");
+            break;
+           
+        case 12:
+       
+            printf("Oyunu kaybettiniz...\n");
+            break;
+        case 4:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;
+        case 5:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;
+        case 6:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;
+        case 8:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;
+        case 9:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;
+        case 10:
+        	
+        	puan=toplam;
+        	printf("Puaniniz: %d\n",puan);
+        	i++;
+        	break;	
+    }
+    if(i==1)
+    {
+    	zar1=1+(rand()%6);
+		zar2=1+(rand()%6);
+		printf("1. zar=%d 2. zar=%d\n",zar1,zar2);
+		toplam=zar1+zar2;
+		printf("toplam=%d\n",toplam);
+		if(toplam==puan)
+		{
+			printf("Puan ve skorunuz ayni kazandiniz...\n");
+			i++;
+		}
+		else if(toplam==7)
+		{
+			printf("7 attiniz kaybettiniz...\n");
+		}
+		else if(toplam!=puan)
+		{
+			printf("puaniniz ve skorunuz farkli kaybettiniz...\n");
+		}
+	
+	}
+    }
