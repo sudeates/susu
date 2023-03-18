@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int oddnumbers(int array[],int size)//bir dizideki tek sayi sayisini veren fonksiyon
+{
+	static int odd;
+	if(size<0)
+	{
+		return odd;
+	} 
+	else 
+	{
+		if(array[size-1]%2!=0)
+		{
+			odd++;
+			oddnumbers(array,size-1);
+		}
+		else
+		{
+			oddnumbers(array,size-1);
+		}
+	}
+}
+
+int main()
+{
+	int size,i,a[50];
+	printf("enter the size of the array");
+	scanf("%d",&size);
+	for(i=0;i<size;i++)
+	{
+		printf("enter the %d. element of array",i+1);
+		scanf("%d",&a[i]);
+	}
+	printf("%d",oddnumbers(a,size));
+	return 0;
+}
