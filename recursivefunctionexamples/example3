@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int f(int x)//sayinin basamaklari toplamini bulan fonksiyon
+{
+	if(x!=0)
+	{
+		return x%10+f(x/10);;
+	}
+	else
+	{
+		return 0;
+	}
+	
+}
+int main()
+{
+	int x;
+	printf("enter the number...");
+	scanf("%d",&x);
+	printf("%d",f(x));
+	return 0;
+}
