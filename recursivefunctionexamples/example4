@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int f(int x,int y)//en buyuk ortak boleni bulan fonksiyon
+{
+	if(y!=0)
+	{
+		return f(y,x%y);
+	}
+	else
+	{
+		return x;
+	}
+}
+int main()
+{
+	int x,y;
+	printf("sayilari girenzi plz...");
+	scanf("%d %d",&x,&y);
+	printf("%d",f(x,y));
+
+}
