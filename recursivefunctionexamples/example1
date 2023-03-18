@@ -1,0 +1,21 @@
+#include <stdio.h>
+int f(int x) //1'den x'e kadar olan sayilari toplayan fonksiyon
+{
+	if(x==1)
+	{
+		return x;
+	}
+	else
+	{
+		return f(x-1)+x;
+	}
+	
+}
+int main()
+{
+	int x;
+	printf("enter the number");
+	scanf("%d",&x);
+	printf("%d",f(x));
+    return 0;
+}
