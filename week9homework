@@ -1,0 +1,202 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct student
+{
+    int no;
+    char name[40];
+    int midterm;
+    int final;
+    struct student *next;
+};
+typedef struct student node;
+node *head,*newnode,*greatest;
+
+int main()
+{
+    int x=0;
+    printf("enter the number you want\n");
+    printf("1=Create list 2=Add new student 3=Delete student 4=Find the best student 5=Find the average");
+    while(1)
+    {   printf("enter number");
+        scanf("%d",&x);
+        switch (x)
+        {
+        case 1: createlist();
+                printlist();
+                break;
+        case 2: addnewstudent();
+                printlist();
+                break;
+        case 3: deletestudent();
+                printlist();
+                break;
+        case 4: findthebest();
+                break;
+        case 5: calculateaverage();
+                break;
+        }
+    }
+}
+
+void createlist()
+{
+    int n,i;
+    printf("how many students do you want?...");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        if(i==0)
+        {
+            newnode=(node*)malloc(n*sizeof(node));
+            head=newnode;
+        }
+        else
+        {
+            newnode->next=(node*)malloc(n*sizeof(node));
+            newnode=newnode->next;
+        }
+        printf("student no=");
+        scanf("%d",&newnode->no);
+        printf("student name");
+        scanf("%s",&newnode->name);
+        printf("student midterm and final=");
+        scanf("%d %d",&newnode->midterm,&newnode->final);
+    }
+    newnode->next=NULL;
+}
+void printlist()
+{
+    double finalnote;
+    node *p;
+    p=head;
+    while(p=!NULL)
+    {
+        printf("student no=%d\n",p->no);
+        printf("student name=%s\n",p->name);
+        printf("student no=%d\n",p->midterm);
+        printf("student no=%d\n",p->final);
+        finalnote=(0.4*p->midterm)+(0,6*p->final);
+        printf("final note=%d\n",finalnote);
+        p=p->next;
+    }
+}
+
+void addnewstudent()
+{
+    int stdno;
+    node *p,*q;
+    newnode=(node*)malloc(sizeof(node));
+    printf("student no=");
+    scanf("%d",&newnode->no);
+    printf("student name");
+    scanf("%s",&newnode->name);
+    printf("student midterm and final=");
+    scanf("%d %d",&newnode->midterm,&newnode->final);
+    printf("which person you want to add before the new student\n");
+    printf("enter 0 to add to the last");
+    scanf("%d",&stdno);
+    p=head;
+    if("p->no==stdno")
+    {
+        newnode->next=p;
+        head=newnode;
+    }
+    else
+    {
+        while(p->next!=NULL && p->no!=stdno)
+        {
+            q=p;
+            p=p->next;
+        }
+        if(p->no==stdno)
+        {
+            q->next=newnode;
+            newnode->next=p;
+        }
+        else if(p->next=NULL)
+        {
+            p->next=newnode;
+            newnode->next=NULL;
+        }
+    }
+}
+
+void deletestudent()
+{
+    int stdno;
+    node *p,*q;
+    
+    printf("ente the number of the student you want to delete");
+    scanf("%d",&stdno);
+    p=head;
+
+    if(p->no==stdno)
+    {
+        head=p->next;
+        free(p);
+    }
+    else
+    {
+        while(p->next!=NULL && p->no!=stdno)
+        {
+            q=p;
+            p=p->next;
+        }
+        if(p->no==stdno)
+        {
+            q->next=p->next;
+            free(p);
+        }
+        else if(p->next=NULL)
+        {
+            printf("there is nothing to delete");
+        }
+    }
+}
+
+double calculate(int midterm,int final)
+{
+    return(0.4*midterm)+(0.6*final);
+}
+
+void findthebest()
+{
+    double score=0;
+
+    node *p;
+    p=head;
+    greatest=head;
+    while(p->next!=NULL)
+    {
+        p=p->next;
+        if(calculate(p->midterm,p->final)>calculate(greatest->midterm,greatest->final))
+        {
+            greatest=p;
+        }
+    }
+    printf("best student= %s best grade=%.2lf\n",greatest->name,calculate(greatest->midterm,greatest->final));
+}
+
+void calculateaverage()
+{
+    int sum,c;
+    double average;
+    node *p;
+    p=head;
+    if(p==NULL)
+    {
+        printf("there is no one int the list");
+    }
+    else
+    {
+        while(p!=NULL)
+        {
+            sum+=calculate(p->midterm,p->final);
+        }
+        p=p->next;
+        c++;
+    }
+    average=sum/c;
+    printf("average=%.2lf",average);
+}
